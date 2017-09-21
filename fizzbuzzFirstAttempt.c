@@ -18,23 +18,25 @@ int process_one_number(int numberToProcess, char* result_buffer)
     int result_count = 0;
     result_buffer[0] = '\0'; // Need to nul-terminate so result works
 
-    if ( numberToProcess % 3 == 0 )
+    if ( numberToProcess != 0 && numberToProcess % 3 == 0 )
     {
         strcat(result_buffer, FIZZ);
     }
 
-    if ( numberToProcess % 5 == 0 )
+    if ( numberToProcess != 0 && numberToProcess % 5 == 0 )
     {
         strcat(result_buffer, BUZZ);
     }
 
-    if ( !( numberToProcess % 3 == 0 ) && !( numberToProcess % 5 == 0))
+    if ( !( numberToProcess != 0 && numberToProcess % 3 == 0 ) && !( numberToProcess != 0 && numberToProcess % 5 == 0))
     {
         sprintf(result_buffer, "%d", numberToProcess);
     }
 
     return strlen(result_buffer);
 }
+
+
 
 /*
  * Process an array of numbers and populate the buffer with
