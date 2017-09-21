@@ -11,6 +11,9 @@ testFirstAttempt: fizzbuzzTester.o fizzbuzzFirstAttempt.o
 test: testFirstAttempt
 	./testFirstAttempt
 
-.PHONY: test
+clean: 
+	rm *.o  
+
+.PHONY: test clean
 
  

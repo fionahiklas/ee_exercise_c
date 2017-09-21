@@ -2,7 +2,7 @@
 #define TESTING_H
 
 #include <stdio.h>
-
+#include <string.h>
 
 #define BEGIN_TEST(function_name) \
   int (function_name)() { \
@@ -14,7 +14,21 @@
 #define ASSERT_TRUE(condition, description) \
   if (!(condition)) \
   { \
-    sprintf(stderr, "%s", (description)); \
+    fprintf(stderr, "%s", (description)); \
+    return 1; \
+  }
+
+#define ASSERT_FALSE(condition, description) \
+  if ((condition)) \
+  { \
+    fprintf(stderr, "%s", (description)); \
+    return 1; \
+  }
+
+#define ASSERT_STRINGS_EQUAL(string1, string2, description) \
+  if ( strcmp((string1), (string2)) != 0 ) \
+  { \
+    fprintf(stderr, "%s", (description)); \
     return 1; \
   }
 
