@@ -8,14 +8,19 @@ const char FIZZ[]="fizz";
 const char BUZZ[]="buzz";
 
 
+static inline bool divides_by_not_zero(int numberToProcess, int divisor)
+{
+    return ( numberToProcess != 0 && numberToProcess % divisor == 0 );
+}
+
 static inline bool divides_by_three(int numberToProcess)
 {
-    return ( numberToProcess != 0 && numberToProcess % 3 == 0 );
+    return divides_by_not_zero(numberToProcess, 3);
 }
 
 static inline bool divides_by_five(int numberToProcess)
 {
-    return ( numberToProcess != 0 && numberToProcess % 5 == 0 );
+    return divides_by_not_zero(numberToProcess, 5);
 }
 
 /*
