@@ -1,5 +1,6 @@
 
 #include "fizzbuzz.h"
+#include <string.h>
 
 const char FIZZ[]="fizz";
 
@@ -17,7 +18,7 @@ int process_one_number(int numberToProcess, char* result_buffer)
 
     if ( numberToProcess % 3 == 0 )
     {
-        strcpy(result_buffer, FIZZ);
+        strcat(result_buffer, FIZZ);
     }
 
     return strlen(result_buffer);
@@ -33,6 +34,5 @@ int process_one_number(int numberToProcess, char* result_buffer)
 int process_many_numbers(int* numbersToProcess[], char* result_buffer)
 {
 
-
-
+    return 0;
 }
