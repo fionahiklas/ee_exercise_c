@@ -37,8 +37,8 @@ BEGIN_TEST(divided_by_three_and_five_returns_fizzbuzz)
 
   result = process_one_number(15, result_buffer);
 
-  ASSERT_TRUE( result == 4, "Process one number results in 4" )
-  ASSERT_STRINGS_EQUAL(result_buffer, "buzz", 10, "Compare strings")
+  ASSERT_TRUE( result == 8, "Process one number results in 8" )
+  ASSERT_STRINGS_EQUAL(result_buffer, "fizzbuzz", 10, "Compare strings")
 }
 END_TEST
 
