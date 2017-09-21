@@ -4,12 +4,22 @@
 #include "fizzbuzz.h"
 #include "testing.h"
 
+
+BEGIN_TEST(dummy_test)
+{
+  printf("DUMMY TEST\n");
+  ASSERT_TRUE( 1==0, "One is zero" )
+}
+END_TEST
+
+
 int main(int argc, char* argv[]) 
 {
-  printf("FizzBuzz Tester\n");
+  START_TESTING("FizzBuzz")
 
-  printf("Starting tests ...\n");
+  RUN_TEST(&dummy_test, "Dummy test 1");
+  RUN_TEST(&dummy_test, "Dummy test 2");
 
-  printf("... finished tests\n");
+  END_TESTING
 }
 
