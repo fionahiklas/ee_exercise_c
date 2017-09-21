@@ -3,6 +3,7 @@
 #include <string.h>
 
 const char FIZZ[]="fizz";
+const char BUZZ[]="buzz";
 
 /*
  * Process a single integer number to return a textual result
@@ -20,6 +21,12 @@ int process_one_number(int numberToProcess, char* result_buffer)
     {
         strcat(result_buffer, FIZZ);
     }
+
+    if ( numberToProcess % 5 == 0 )
+    {
+        strcat(result_buffer, BUZZ);
+    }
+
 
     return strlen(result_buffer);
 }
