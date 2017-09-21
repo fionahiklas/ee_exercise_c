@@ -8,11 +8,11 @@
 BEGIN_TEST(divided_by_three_returns_fizz)
 {
   char result_buffer[10];
-  int result;
+  int result; // Doesn't matter about initializing, it'll be junk
 
   result = process_one_number(3, result_buffer);
 
-  ASSERT_TRUE( result==0, "Process one number results in 0" )
+  ASSERT_TRUE( result == 4, "Process one number results in 4" )
   ASSERT_STRINGS_EQUAL(result_buffer, "fizz", 10, "Compare strings")
 }
 END_TEST
