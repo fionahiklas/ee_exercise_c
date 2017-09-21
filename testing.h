@@ -25,8 +25,8 @@
     return 1; \
   }
 
-#define ASSERT_STRINGS_EQUAL(string1, string2, description) \
-  if ( strcmp((string1), (string2)) != 0 ) \
+#define ASSERT_STRINGS_EQUAL(string1, string2, limit, description) \
+  if ( strncmp((string1), (string2), (limit)) != 0 ) \
   { \
     fprintf(stderr, "%s", (description)); \
     return 1; \
