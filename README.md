@@ -56,3 +56,11 @@ luck: 2
 number: 10
 
 ```
+
+
+## C Language Stuff
+
+### Inline Functions
+
+These are meant to be faster.  Need to use 
+[static inline](https://stackoverflow.com/questions/6312597/is-inline-without-static-or-extern-ever-useful-in-c99)

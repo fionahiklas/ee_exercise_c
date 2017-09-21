@@ -2,9 +2,21 @@
 #include "fizzbuzz.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 const char FIZZ[]="fizz";
 const char BUZZ[]="buzz";
+
+
+static inline bool divides_by_three(int numberToProcess)
+{
+    return ( numberToProcess != 0 && numberToProcess % 3 == 0 );
+}
+
+static inline bool divides_by_five(int numberToProcess)
+{
+    return ( numberToProcess != 0 && numberToProcess % 5 == 0 );
+}
 
 /*
  * Process a single integer number to return a textual result
@@ -18,24 +30,23 @@ int process_one_number(int numberToProcess, char* result_buffer)
     int result_count = 0;
     result_buffer[0] = '\0'; // Need to nul-terminate so result works
 
-    if ( numberToProcess != 0 && numberToProcess % 3 == 0 )
+    if ( divides_by_three( numberToProcess ) )
     {
         strcat(result_buffer, FIZZ);
     }
 
-    if ( numberToProcess != 0 && numberToProcess % 5 == 0 )
+    if ( divides_by_five( numberToProcess ) )
     {
         strcat(result_buffer, BUZZ);
     }
 
-    if ( !( numberToProcess != 0 && numberToProcess % 3 == 0 ) && !( numberToProcess != 0 && numberToProcess % 5 == 0))
+    if ( !divides_by_three( numberToProcess ) && !divides_by_five( numberToProcess ) )
     {
         sprintf(result_buffer, "%d", numberToProcess);
     }
 
     return strlen(result_buffer);
 }
-
 
 
 /*
