@@ -1,5 +1,6 @@
 
 #include "fizzbuzz.h"
+#include <stdio.h>
 #include <string.h>
 
 const char FIZZ[]="fizz";
@@ -27,6 +28,10 @@ int process_one_number(int numberToProcess, char* result_buffer)
         strcat(result_buffer, BUZZ);
     }
 
+    if ( !( numberToProcess % 3 == 0 ) && !( numberToProcess % 5 == 0))
+    {
+        sprintf(result_buffer, "%d", numberToProcess);
+    }
 
     return strlen(result_buffer);
 }
