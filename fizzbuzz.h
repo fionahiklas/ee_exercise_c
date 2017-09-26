@@ -17,7 +17,7 @@ int process_one_number(int numberToProcess, char* result_buffer);
  * The return value of the function is number or characters 
  * written to the buffer, or 0 on error.
  */
-int process_many_numbers(int numbersToProcess[], int sizeOfNumbersArray, char* result_buffer);
+int process_many_numbers(const int* numbersToProcess, int sizeOfNumbersArray, char* result_buffer);
 
 #endif
 
