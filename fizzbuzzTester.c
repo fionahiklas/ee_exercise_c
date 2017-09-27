@@ -5,7 +5,7 @@
 #include "testing.h"
 
 const int FULL_TEST_DATA[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-const char* FULL_RESULT_FIZZBUZZ = "1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz 16 17 fizz 19 buzz";
+const char* FULL_RESULT_FIZZBUZZ = "1 2 luck 4 buzz fizz 7 8 fizz buzz 11 fizz luck 14 fizzbuzz 16 17 fizz 19 buzz";
 
 
 BEGIN_TEST(divided_by_three_returns_fizz)
@@ -82,6 +82,17 @@ BEGIN_TEST(contains_three_digit_output_luck)
 }
 END_TEST
 
+BEGIN_TEST(contains_three_digit_output_luck_nothing_else_for_three)
+{
+  char result_buffer[10];
+  int result; // Doesn't matter about initializing, it'll be junk
+
+  result = process_one_number(3, result_buffer);
+
+  ASSERT_TRUE( result == 4, "Process one number results in 4" )
+  ASSERT_STRINGS_EQUAL(result_buffer, "luck", 10, "Compare strings")
+}
+END_TEST
 
 
 BEGIN_TEST(process_array_of_numbers)
@@ -109,6 +120,7 @@ int main(int argc, char* argv[])
   RUN_TEST(&a_number_that_doesnt_divide_returns_number, "Return number for something that doesn't divide");
   RUN_TEST(&zero_doesnt_break_mod_operator_use, "Zero shouldn't result in fizzbuzz");
   RUN_TEST(&contains_three_digit_output_luck, "Test that a number containing 3 results in luck");
+  RUN_TEST(&contains_three_digit_output_luck_nothing_else_for_three, "Test that number containing 3 but also divisible buy 3 is just luck");
   RUN_TEST(&process_array_of_numbers, "Test full fizzbuzz results");
 
   END_TESTING

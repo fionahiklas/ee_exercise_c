@@ -28,9 +28,6 @@ static inline bool contains_digit_three(int numberToProcess)
 {
     char to_string_buffer[10];
     sprintf(to_string_buffer, "%d", numberToProcess);
-
-    printf("Contains digit: buffer: '%s'\n", to_string_buffer);
-
     return ( strchr( to_string_buffer, '3' ) != NULL );
 }
 
@@ -48,10 +45,7 @@ int process_one_number(int numberToProcess, char* result_buffer)
 
     if ( contains_digit_three( numberToProcess ) )
     {
-        printf("CONTAINS THREE\n");
-
         strcat(result_buffer, LUCK);
-
     }
 
     if ( divides_by_three( numberToProcess ) )
