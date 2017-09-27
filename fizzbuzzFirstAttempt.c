@@ -47,22 +47,23 @@ int process_one_number(int numberToProcess, char* result_buffer)
     {
         strcat(result_buffer, LUCK);
     }
-
-    if ( divides_by_three( numberToProcess ) )
+    else
     {
-        strcat(result_buffer, FIZZ);
-    }
+        if ( divides_by_three( numberToProcess ) )
+        {
+            strcat(result_buffer, FIZZ);
+        }
 
-    if ( divides_by_five( numberToProcess ) )
-    {
-        strcat(result_buffer, BUZZ);
-    }
+        if ( divides_by_five( numberToProcess ) )
+        {
+            strcat(result_buffer, BUZZ);
+        }
 
-    if ( !divides_by_three( numberToProcess ) && !divides_by_five( numberToProcess ) && !contains_digit_three( numberToProcess ))
-    {
-        sprintf(result_buffer, "%d", numberToProcess);
+        if ( !divides_by_three( numberToProcess ) && !divides_by_five( numberToProcess ) )
+        {
+            sprintf(result_buffer, "%d", numberToProcess);
+        }
     }
-
     return strlen(result_buffer);
 }
 
