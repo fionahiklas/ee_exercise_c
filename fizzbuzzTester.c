@@ -77,7 +77,7 @@ BEGIN_TEST(contains_three_digit_output_luck)
   // Why pick 13?  Well, it has a 3 in it but isn't divisible by 3
   result = process_one_number(13, result_buffer);
 
-  ASSERT_TRUE( result == 4, "Process one number results in 1" )
+  ASSERT_TRUE( result == 4, "Process one number results in 4" )
   ASSERT_STRINGS_EQUAL(result_buffer, "luck", 10, "Compare strings")
 }
 END_TEST
@@ -108,8 +108,8 @@ int main(int argc, char* argv[])
   RUN_TEST(&divided_by_three_and_five_returns_fizzbuzz, "Divide by three and five returns fizzbuzz");
   RUN_TEST(&a_number_that_doesnt_divide_returns_number, "Return number for something that doesn't divide");
   RUN_TEST(&zero_doesnt_break_mod_operator_use, "Zero shouldn't result in fizzbuzz");
-  RUN_TEST(&process_array_of_numbers, "Test full fizzbuzz results");
   RUN_TEST(&contains_three_digit_output_luck, "Test that a number containing 3 results in luck");
+  RUN_TEST(&process_array_of_numbers, "Test full fizzbuzz results");
 
   END_TESTING
 }

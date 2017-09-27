@@ -6,6 +6,7 @@
 
 const char FIZZ[]="fizz";
 const char BUZZ[]="buzz";
+const char LUCK[]="luck";
 
 
 static inline bool divides_by_not_zero(int numberToProcess, int divisor)
@@ -23,6 +24,16 @@ static inline bool divides_by_five(int numberToProcess)
     return divides_by_not_zero(numberToProcess, 5);
 }
 
+static inline bool contains_digit_three(int numberToProcess)
+{
+    char to_string_buffer[10];
+    sprintf(to_string_buffer, "%d", numberToProcess);
+
+    printf("Contains digit: buffer: '%s'\n", to_string_buffer);
+
+    return ( strchr( to_string_buffer, '3' ) != NULL );
+}
+
 /*
  * Process a single integer number to return a textual result
  * based on the fizzbuzz rules.
@@ -35,6 +46,14 @@ int process_one_number(int numberToProcess, char* result_buffer)
     int result_count = 0;
     result_buffer[0] = '\0'; // Need to nul-terminate so result works
 
+    if ( contains_digit_three( numberToProcess ) )
+    {
+        printf("CONTAINS THREE\n");
+
+        strcat(result_buffer, LUCK);
+
+    }
+
     if ( divides_by_three( numberToProcess ) )
     {
         strcat(result_buffer, FIZZ);
@@ -45,7 +64,7 @@ int process_one_number(int numberToProcess, char* result_buffer)
         strcat(result_buffer, BUZZ);
     }
 
-    if ( !divides_by_three( numberToProcess ) && !divides_by_five( numberToProcess ) )
+    if ( !divides_by_three( numberToProcess ) && !divides_by_five( numberToProcess ) && !contains_digit_three( numberToProcess ))
     {
         sprintf(result_buffer, "%d", numberToProcess);
     }
