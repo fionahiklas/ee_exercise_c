@@ -69,6 +69,21 @@ BEGIN_TEST(zero_doesnt_break_mod_operator_use)
 }
 END_TEST
 
+BEGIN_TEST(contains_three_digit_output_luck)
+{
+  char result_buffer[10];
+  int result; // Doesn't matter about initializing, it'll be junk
+
+  // Why pick 13?  Well, it has a 3 in it but isn't divisible by 3
+  result = process_one_number(13, result_buffer);
+
+  ASSERT_TRUE( result == 4, "Process one number results in 1" )
+  ASSERT_STRINGS_EQUAL(result_buffer, "luck", 10, "Compare strings")
+}
+END_TEST
+
+
+
 BEGIN_TEST(process_array_of_numbers)
 {
   char result_buffer[1024]; // Paranoid, made the buffer huge
@@ -94,6 +109,7 @@ int main(int argc, char* argv[])
   RUN_TEST(&a_number_that_doesnt_divide_returns_number, "Return number for something that doesn't divide");
   RUN_TEST(&zero_doesnt_break_mod_operator_use, "Zero shouldn't result in fizzbuzz");
   RUN_TEST(&process_array_of_numbers, "Test full fizzbuzz results");
+  RUN_TEST(&contains_three_digit_output_luck, "Test that a number containing 3 results in luck");
 
   END_TESTING
 }
