@@ -7,9 +7,12 @@ fizzbuzzFirstAttempt: fizzbuzzMain.o fizzbuzzFirstAttempt.o
 testFirstAttempt: fizzbuzzTester.o fizzbuzzFirstAttempt.o
 	gcc -o $@ $^
 
+testSecondAttempt: fizzbuzzTester.o fizzbuzzSecondAttempt.o
+	gcc -o $@ $^
 
-test: testFirstAttempt
+test: testFirstAttempt testSecondAttempt
 	./testFirstAttempt
+	./testSecondAttempt
 
 clean: 
 	rm *.o  
