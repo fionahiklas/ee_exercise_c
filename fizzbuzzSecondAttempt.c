@@ -42,11 +42,17 @@ static inline bool contains_digit_three(int numberToProcess)
  * Returns the following
  *  0   - if nothing is done
  *  -1  - the processing should halt
- *  +ve - integer representing length of output
+ *  +1  - added something, continue processing
  */
 int add_fizz_if_required(int numberToProcess, char* result_buffer)
 {
+    if(divides_by_three(numberToProcess))
+    {
+        strcat(result_buffer, FIZZ);
+        return 1;
+    }
 
+    return 0;
 }
 
 /**
@@ -55,11 +61,17 @@ int add_fizz_if_required(int numberToProcess, char* result_buffer)
  * Returns the following
  *  0   - if nothing is done
  *  -1  - the processing should halt
- *  +ve - integer representing length of output
+ *  +1  - added something, continue processing
  */
 int add_buzz_if_required(int numberToProcess, char* result_buffer)
 {
+    if(divides_by_five(numberToProcess))
+    {
+        strcat(result_buffer, BUZZ);
+        return 1;
+    }
 
+    return 0;
 }
 
 /**
@@ -68,11 +80,17 @@ int add_buzz_if_required(int numberToProcess, char* result_buffer)
  * Returns the following
  *  0   - if nothing is done
  *  -1  - the processing should halt
- *  +ve - integer representing length of output
+ *  +1  - added something, continue processing
  */
 int add_luck_if_required(int numberToProcess, char* result_buffer)
 {
+    if(contains_digit_three(numberToProcess))
+    {
+        strcat(result_buffer, LUCK);
+        return -1;
+    }
 
+    return 0;
 }
 
 /**
@@ -81,13 +99,27 @@ int add_luck_if_required(int numberToProcess, char* result_buffer)
  * Returns the following
  *  0   - if nothing is done
  *  -1  - the processing should halt
- *  +ve - integer representing length of output
+ *  +1  - added something, continue processing
  */
 int add_digit_if_required(int numberToProcess, char* result_buffer)
 {
-
+    if(strlen(result_buffer)>0)
+    {
+        sprintf(result_buffer, "%d", numberToProcess);
+        return 1;
+    }
+    return 0;
 }
 
+// This is really complicated syntax!  This is an array of pointers to functions
+// that take (int, char*) as arguments and return int!  I wonder if there is a
+// better way to write this so it's clearer
+int (*functionList[])(int, char*) = {
+    add_luck_if_required,
+    add_fizz_if_required,
+    add_buzz_if_required,
+    add_digit_if_required
+};
 
 /*
  * Process a single integer number to return a textual result
@@ -98,6 +130,15 @@ int add_digit_if_required(int numberToProcess, char* result_buffer)
  */
 int process_one_number(int numberToProcess, char* result_buffer)
 {
+    result_buffer[0] = '\0';
+
+    for(int i=0; i < sizeof(functionList)/sizeof(void (*)()) ; i++ )
+    {
+        int result = functionList[i](numberToProcess, result_buffer);
+        if(result == -1) break;
+    }
+
+    return strlen(result_buffer);
 }
 
 
