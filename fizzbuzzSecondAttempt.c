@@ -103,10 +103,10 @@ int add_luck_if_required(int numberToProcess, char* result_buffer)
  */
 int add_digit_if_required(int numberToProcess, char* result_buffer)
 {
-    if(strlen(result_buffer)>0)
+    if(strlen(result_buffer) == 0)
     {
         sprintf(result_buffer, "%d", numberToProcess);
-        return 1;
+        return -1;
     }
     return 0;
 }
